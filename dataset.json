@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "question": "What is Machine Learning?",
+        "ideal_answer": "Machine Learning is a subset of Artificial Intelligence that enables computers to learn patterns from data and make predictions without being explicitly programmed."
+    },
+    {
+        "id": 2,
+        "question": "What is Overfitting?",
+        "ideal_answer": "Overfitting occurs when a machine learning model memorizes the training data instead of learning general patterns, causing poor performance on unseen data."
+    },
+    {
+        "id": 3,
+        "question": "Difference between AI and ML?",
+        "ideal_answer": "Artificial Intelligence is the broader field of creating intelligent systems, while Machine Learning is a subset of AI that allows systems to learn from data."
+    }
+]
