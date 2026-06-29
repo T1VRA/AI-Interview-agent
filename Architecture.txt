@@ -1,0 +1,54 @@
+## System Architecture
+
+The application follows a modular pipeline architecture.
+
+The workflow begins when the user records an answer using the browser microphone in the Streamlit interface.
+
+The recorded audio is sent to the Speech-to-Text module, where OpenAI Whisper transcribes the speech into text.
+
+Next, the transcript, along with the interview question and its ideal answer retrieved from the dataset, is passed to the Gemini Large Language Model.
+
+This grounding step ensures that Gemini evaluates the response based on the expected answer rather than generating arbitrary feedback.
+
+Gemini then produces structured feedback, including the score, strengths, weaknesses, and the ideal answer.
+
+The feedback is displayed on the Streamlit interface and simultaneously converted into speech using Google Text-to-Speech.
+
+Finally, after all interview questions are completed, the application uses Gemini once again to generate an overall interview summary, including the candidate's strengths, weaknesses, and recommendations.
+
+So, the complete pipeline is:
+
+**Browser Microphone → Whisper (Speech-to-Text) → Dataset Retrieval → Gemini Evaluation → Text-to-Speech → Streamlit User Interface → Final Interview Summary.**
+
+
+
+             AI Voice Interview Agent
+
+        ┌──────────────────────────────┐
+        │      Streamlit Frontend      │
+        └──────────────┬───────────────┘
+                       │
+               Browser Microphone
+                       │
+                       ▼
+          OpenAI Whisper (Speech-to-Text)
+                       │
+                       ▼
+          Transcript + Interview Question
+                       │
+                       ▼
+      Dataset (Question + Ideal Answer)
+                       │
+                       ▼
+         Google Gemini (LLM Evaluation)
+                       │
+        ┌──────────────┴──────────────┐
+        ▼                             ▼
+ Feedback on Screen         Google Text-to-Speech
+        │                             │
+        └──────────────┬──────────────┘
+                       ▼
+                User hears feedback
+                       │
+                       ▼
+          Final Interview Summary
